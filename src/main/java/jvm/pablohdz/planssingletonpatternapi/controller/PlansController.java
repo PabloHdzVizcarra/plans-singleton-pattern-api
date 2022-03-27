@@ -1,11 +1,13 @@
 package jvm.pablohdz.planssingletonpatternapi.controller;
 
 import java.util.List;
+import jvm.pablohdz.planssingletonpatternapi.dto.DeleteResponse;
 import jvm.pablohdz.planssingletonpatternapi.dto.PlansDto;
 import jvm.pablohdz.planssingletonpatternapi.model.PlansEntity;
 import jvm.pablohdz.planssingletonpatternapi.service.PlansService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,5 +41,11 @@ public class PlansController {
     public ResponseEntity<?> getById(@PathVariable String id) {
         PlansEntity plansEntity = plansService.getOne(id);
         return ResponseEntity.ok(plansEntity);
+    }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DeleteResponse> deletePlans(@PathVariable String id) {
+        DeleteResponse response = plansService.delete(id);
+        return ResponseEntity.ok(response);
     }
 }

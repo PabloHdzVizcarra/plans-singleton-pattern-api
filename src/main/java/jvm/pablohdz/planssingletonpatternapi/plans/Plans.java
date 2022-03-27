@@ -63,4 +63,9 @@ public class Plans {
   public PlansEntity retrieveById(String id) {
     return plansRepository.findById(id).orElseThrow(RuntimeException::new);
   }
+  
+  public String deleteById(String id) {
+    plansRepository.deleteById(id);
+    return id;
+  }
 }
