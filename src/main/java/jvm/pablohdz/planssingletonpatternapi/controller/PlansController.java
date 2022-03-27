@@ -1,9 +1,12 @@
 package jvm.pablohdz.planssingletonpatternapi.controller;
 
+import java.util.List;
 import jvm.pablohdz.planssingletonpatternapi.dto.PlansDto;
+import jvm.pablohdz.planssingletonpatternapi.model.PlansEntity;
 import jvm.pablohdz.planssingletonpatternapi.service.PlansService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +23,14 @@ public class PlansController {
     }
     
     @PostMapping
-    public ResponseEntity<PlansDto> createPlan(@RequestBody PlansDto plan) {
+    public ResponseEntity<?> createPlan(@RequestBody PlansDto plan) {
         plansService.createPlan(plan);
         return ResponseEntity.ok(plan);
+    }
+    
+    @GetMapping
+    public ResponseEntity<?> getPlans() {
+        List<PlansEntity> plans = plansService.getAllPlans();
+        return ResponseEntity.ok(plans);
     }
 }

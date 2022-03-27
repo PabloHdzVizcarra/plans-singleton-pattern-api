@@ -1,6 +1,8 @@
 package jvm.pablohdz.planssingletonpatternapi.service;
 
+import java.util.List;
 import jvm.pablohdz.planssingletonpatternapi.dto.PlansDto;
+import jvm.pablohdz.planssingletonpatternapi.model.PlansEntity;
 import jvm.pablohdz.planssingletonpatternapi.plans.Plans;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +19,9 @@ public class PlansService {
     public void createPlan(PlansDto plan) {
         plans.createModel(plan);
         plans.persist();
+    }
+    
+    public List<PlansEntity> getAllPlans() {
+        return plans.retrieveAll();
     }
 }

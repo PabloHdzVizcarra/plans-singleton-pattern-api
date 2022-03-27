@@ -1,6 +1,8 @@
 package jvm.pablohdz.planssingletonpatternapi.plans;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import jvm.pablohdz.planssingletonpatternapi.dto.PlansDto;
 import jvm.pablohdz.planssingletonpatternapi.model.PlansEntity;
@@ -37,14 +39,24 @@ public class Plans {
   }
   
   private String generateRandomNumbersWithLength() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < 8; i++) {
-      sb.append(Math.random());
+    int leftLimit = 97;
+    int rightLimit = 122;
+    int targetStringLength = 8;
+    Random random = new Random();
+    StringBuilder buffer = new StringBuilder(targetStringLength);
+    for (int i = 0; i < targetStringLength; i++) {
+      int randomLimitedInt = leftLimit + (int)
+              (random.nextFloat() * (rightLimit - leftLimit + 1));
+      buffer.append((char) randomLimitedInt);
     }
-    return sb.toString();
+    return buffer.toString();
   }
   
   public void persist() {
     plansRepository.save(plansCurrentEntity);
+  }
+  
+  public List<PlansEntity> retrieveAll() {
+    return plansRepository.findAll();
   }
 }
