@@ -24,4 +24,9 @@ public class PlansService {
     public List<PlansEntity> getAllPlans() {
         return plans.retrieveAll();
     }
+    
+    public PlansEntity getOne(String id) {
+        PlansEntity entity = plans.retrieveById(id);
+        return entity;
+    }
 }

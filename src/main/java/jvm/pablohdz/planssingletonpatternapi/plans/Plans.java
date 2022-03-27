@@ -59,4 +59,8 @@ public class Plans {
   public List<PlansEntity> retrieveAll() {
     return plansRepository.findAll();
   }
+  
+  public PlansEntity retrieveById(String id) {
+    return plansRepository.findById(id).orElseThrow(RuntimeException::new);
+  }
 }
