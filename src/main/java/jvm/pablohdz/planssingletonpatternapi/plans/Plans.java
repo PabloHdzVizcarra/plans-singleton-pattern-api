@@ -52,8 +52,8 @@ public class Plans {
     return buffer.toString();
   }
   
-  public void persist() {
-    plansRepository.save(plansCurrentEntity);
+  public PlansEntity persist() {
+    return plansRepository.save(plansCurrentEntity);
   }
   
   public List<PlansEntity> retrieveAll() {

@@ -25,8 +25,8 @@ public class PlansController {
     
     @PostMapping
     public ResponseEntity<?> createPlan(@RequestBody PlansDto plan) {
-        plansService.createPlan(plan);
-        return ResponseEntity.ok(plan);
+        PlansEntity plans = plansService.createPlan(plan);
+        return ResponseEntity.ok(plans);
     }
     
     @GetMapping

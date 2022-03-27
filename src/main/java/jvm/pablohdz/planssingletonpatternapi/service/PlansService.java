@@ -16,9 +16,9 @@ public class PlansService {
         this.plans = plans;
     }
     
-    public void createPlan(PlansDto plan) {
+    public PlansEntity createPlan(PlansDto plan) {
         plans.createModel(plan);
-        plans.persist();
+        return plans.persist();
     }
     
     public List<PlansEntity> getAllPlans() {
