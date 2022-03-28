@@ -26,13 +26,13 @@ public class PlansController {
     }
     
     @PostMapping
-    public ResponseEntity<?> createPlan(@RequestBody PlansDto plan) {
+    public ResponseEntity<PlansEntity> createPlan(@RequestBody PlansDto plan) {
         PlansEntity plans = plansService.createPlan(plan);
         return ResponseEntity.ok(plans);
     }
     
     @GetMapping
-    public ResponseEntity<?> getPlans() {
+    public ResponseEntity<List<PlansEntity>> getPlans() {
         List<PlansEntity> plans = plansService.getAllPlans();
         return ResponseEntity.ok(plans);
     }
