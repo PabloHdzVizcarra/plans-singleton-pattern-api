@@ -3,6 +3,7 @@ package jvm.pablohdz.planssingletonpatternapi.service;
 import java.util.List;
 import jvm.pablohdz.planssingletonpatternapi.dto.DeleteResponse;
 import jvm.pablohdz.planssingletonpatternapi.dto.PlansDto;
+import jvm.pablohdz.planssingletonpatternapi.dto.PlansResponseDto;
 import jvm.pablohdz.planssingletonpatternapi.model.PlansEntity;
 import jvm.pablohdz.planssingletonpatternapi.plans.Plans;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PlansService {
     return plans.persist();
   }
 
-  public List<PlansEntity> getAllPlans() {
+  public List<PlansResponseDto> getAllPlans() {
     return plans.retrieveAll();
   }
 

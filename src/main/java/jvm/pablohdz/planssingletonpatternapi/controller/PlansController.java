@@ -3,6 +3,7 @@ package jvm.pablohdz.planssingletonpatternapi.controller;
 import java.util.List;
 import jvm.pablohdz.planssingletonpatternapi.dto.DeleteResponse;
 import jvm.pablohdz.planssingletonpatternapi.dto.PlansDto;
+import jvm.pablohdz.planssingletonpatternapi.dto.PlansResponseDto;
 import jvm.pablohdz.planssingletonpatternapi.model.PlansEntity;
 import jvm.pablohdz.planssingletonpatternapi.service.PlansService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping("v1/plans")
+@RequestMapping("api/v1/plans")
 public class PlansController {
     private final PlansService plansService;
     
@@ -32,8 +33,8 @@ public class PlansController {
     }
     
     @GetMapping
-    public ResponseEntity<List<PlansEntity>> getPlans() {
-        List<PlansEntity> plans = plansService.getAllPlans();
+    public ResponseEntity<List<PlansResponseDto>> getPlans() {
+        List<PlansResponseDto> plans = plansService.getAllPlans();
         return ResponseEntity.ok(plans);
     }
     
