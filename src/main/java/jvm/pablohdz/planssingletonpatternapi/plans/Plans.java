@@ -101,6 +101,7 @@ public class Plans {
     dto.setTrialPeriodDays(entity.getTrialPeriodDays());
     dto.setDescription(entity.getDescription());
     dto.setActive(entity.getActive());
+    dto.setcreated(entity.getCreated());
     return dto;
   }
 }

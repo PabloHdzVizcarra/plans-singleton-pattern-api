@@ -12,6 +12,7 @@ public class PlansResponseDto {
     private String interval;
     private Integer intervalCount;
     private String trialPeriodDays;
+    private Long created;
     
     public PlansResponseDto() {
     }
@@ -102,5 +103,13 @@ public class PlansResponseDto {
     
     public void setTrialPeriodDays(String trialPeriodDays) {
         this.trialPeriodDays = trialPeriodDays;
+    }
+    
+    public void setcreated(Long created) {
+        this.created = created;
+    }
+    
+    public Long getCreated() {
+        return created;
     }
 }
