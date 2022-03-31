@@ -1,5 +1,8 @@
 package jvm.pablohdz.planssingletonpatternapi.plans;
 
+import static jvm.pablohdz.planssingletonpatternapi.component.CachePlansComponent.CACHE_OFF;
+import static jvm.pablohdz.planssingletonpatternapi.component.CachePlansComponent.CACHE_ON;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -17,8 +20,7 @@ import org.springframework.stereotype.Component;
 public class Plans {
   private final PlansRepository plansRepository;
   private PlansEntity plansCurrentEntity;
-  private CachePlansComponent cache = CachePlansComponent.getCacheComponent();
-
+  
   @Autowired
   public Plans(PlansRepository plansRepository) {
     this.plansRepository = plansRepository;
@@ -57,6 +59,7 @@ public class Plans {
   }
   
   public PlansEntity persist() {
+    CachePlansComponent.setCache(CACHE_OFF);
     return plansRepository.save(plansCurrentEntity);
   }
   
@@ -69,8 +72,8 @@ public class Plans {
     List<PlansResponseDto> dtoList = plansRepository.findAll().stream()
             .map(this::mapPlansToPlansResponseDto).collect(Collectors.toList());
     
-    CachePlansComponent.setCache(true);
     CachePlansComponent.saveCache(dtoList);
+    CachePlansComponent.setCache(CACHE_ON);
     
     return dtoList;
   }
@@ -81,6 +84,7 @@ public class Plans {
   
   public String deleteById(String id) {
     plansRepository.deleteById(id);
+    CachePlansComponent.setCache(CACHE_OFF);
     return id;
   }
   

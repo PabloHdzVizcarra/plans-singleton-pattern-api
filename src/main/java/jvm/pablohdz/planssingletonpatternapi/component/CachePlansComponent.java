@@ -9,17 +9,12 @@ import org.springframework.lang.Nullable;
 
 public final class CachePlansComponent {
   private static final Logger logger = LoggerFactory.getLogger(CachePlansComponent.class);
-  private static CachePlansComponent cacheComponent;
+  public static final boolean CACHE_ON = true;
+  public static final boolean CACHE_OFF = false;
   private static boolean isCache;
   private static final HashMap<String, List<PlansResponseDto>> cachePlans = new HashMap<>();
 
   private CachePlansComponent() {}
-
-  public static synchronized CachePlansComponent getCacheComponent() {
-    if (cacheComponent == null) cacheComponent = new CachePlansComponent();
-
-    return cacheComponent;
-  }
   
   public static void saveCache(List<PlansResponseDto> dtoList) {
     logger.info("cache saved from company company1");
